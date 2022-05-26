@@ -5,7 +5,7 @@ function App() {
         <h1>Digital Nomad Compass</h1>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
