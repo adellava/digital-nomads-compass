@@ -1,0 +1,9 @@
+@import "styles/variables";
+@import "styles/mixins";
+@import "styles/atoms";
+
+.CityFinderInput {
+  @include dncInput();
+  display: block;
+  margin: 0 auto;
+}

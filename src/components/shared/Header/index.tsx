@@ -1,7 +1,9 @@
+import './Header.scss'
+
 function Header() {
   return (
-    <header>
-      <h1>Digital Nomad Compass</h1>
+    <header className='Header'>
+      <h1  className='Header_title'>Digital Nomad Compass</h1>
     </header>
   )
 }

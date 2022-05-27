@@ -1,0 +1,14 @@
+@mixin dncInput {
+  @include inputReset();
+  border: $gray-500 1px solid;
+  padding: 0.5rem 0.9rem;
+  border-radius: $border-radius;
+  background-color: $white;
+  color: $black;
+  font-size: 1.1rem;
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    border-width: 2px;
+  }
+}

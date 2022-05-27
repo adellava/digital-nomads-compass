@@ -39,8 +39,23 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Stylig
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In this project we are using JavaScript-friendly BEM naming convention and SCSS similar to
+https://medium.com/trabe/a-more-javascript-friendly-bem-naming-convention-75c7f01ff736
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ex.
+
+```
+.MyBlock {
+  background: LIGHTCORAL;
+}
+
+.MyBlock___myModifier { // three underscores
+  background: LIGHTGRAY;
+}
+
+.MyBlock_myElement {
+  margin-top: 20px;
+}
+```

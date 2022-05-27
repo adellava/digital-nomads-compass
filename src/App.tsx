@@ -1,14 +1,19 @@
 import { useState } from 'react'
-import Header from 'components/shared/Header'
 import CityFinderInput from 'components/CityFinder/CityFinderInput'
+import CityFinderInputWrapper from 'components/CityFinder/CityFinderInputWrapper'
 import CityFinderResultsList from 'components/CityFinder/CityFinderResultsList'
 import getCities from 'services/getCities'
 import { City } from 'models/City'
+import MainLayout from 'layouts/MainLayout'
 
 function App() {
   const [cityList, setCityList] = useState<City[]>([])
 
   const fetchCities = async (city: string) => {
+    if (!city) {
+      setCityList([])
+      return
+    }
     const res = await getCities(city)
     if (res instanceof Error) {
       console.error(res)
@@ -20,12 +25,16 @@ function App() {
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     fetchCities(event.target.value)
   }
+
   return (
-    <div>
-      <Header />
-      <CityFinderInput onInputChange={onInputChange} />
-      <CityFinderResultsList cityList={cityList} />
-    </div>
+    <MainLayout>
+      <CityFinderInputWrapper>
+        <>
+          <CityFinderInput onInputChange={onInputChange} />
+          <CityFinderResultsList cityList={cityList} />
+        </>
+      </CityFinderInputWrapper>
+    </MainLayout>
   )
 }
 
