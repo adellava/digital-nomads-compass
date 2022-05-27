@@ -6,13 +6,18 @@ type CityFinderResultsListProps = {
 }
 
 function CityFinderResultsList({ cityList }: CityFinderResultsListProps) {
+  if (cityList.length === 0) return <></>
 
-  if(cityList.length === 0) return <></>
-  
   return (
-    <ul className='CityFinderResultsList'>
+    <ul data-testid="CityFinderResultsList" className="CityFinderResultsList">
       {cityList.map((city, i) => (
-        <li className='CityFinderResultsList_item' key={i}>{city.matching_full_name}</li>
+        <li
+          data-testid="CityFinderResultsList_item"
+          className="CityFinderResultsList_item"
+          key={i}
+        >
+          {city.matching_full_name}
+        </li>
       ))}
     </ul>
   )

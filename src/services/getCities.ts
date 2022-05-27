@@ -1,5 +1,4 @@
 import { City } from 'models/City'
-import { type } from 'os'
 import api from 'services/api'
 
 // const sleep = (milliseconds: number) => new Promise(resolve => setTimeout(resolve, milliseconds));

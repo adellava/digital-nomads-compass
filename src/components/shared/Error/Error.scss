@@ -1,0 +1,10 @@
+@import "styles/variables";
+
+.Error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $danger-color;
+  min-height: 3rem;
+  font-size: 1.1rem;
+}
