@@ -1,44 +1,64 @@
 import { useState } from 'react'
-import CityFinderInput from 'components/CityFinder/CityFinderInput'
-import CityFinderInputWrapper from 'components/CityFinder/CityFinderInputWrapper'
-import CityFinderResultsList from 'components/CityFinder/CityFinderResultsList'
+import CityCard from 'components/CityFinder/CityCard'
 import ErrorComponent from 'components/shared/Error'
-import getCities from 'services/getCities'
-import { City } from 'models/City'
+import searchACity from 'services/searchACity'
+import getCity from 'services/getCity'
+import { CitySearchResult } from 'models/CitySearchResult'
 import MainLayout from 'layouts/MainLayout'
+import { City } from 'models/City'
+import CityFinderForm from 'components/CityFinder/CityFinderForm'
 
 function App() {
-  const [cityList, setCityList] = useState<City[]>([])
+  const [citySearchResultList, setCitySearchResultList] = useState<
+    CitySearchResult[]
+  >([])
+  const [city, setCity] = useState<City | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchCities = async (city: string) => {
+  const search = async (city: string) => {
     if (!city) {
-      setCityList([])
+      setCitySearchResultList([])
       setError(null)
       return
     }
-    const res = await getCities(city)
+    const res = await searchACity(city)
     if (res instanceof Error) {
       setError(res.message)
-      setCityList([])
+      setCitySearchResultList([])
       return
     }
-    setCityList(res)
+    setCitySearchResultList(res)
   }
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    fetchCities(event.target.value)
+    search(event.target.value)
+  }
+
+  const onCitySelected = async (city: CitySearchResult) => {
+    setCitySearchResultList([])
+    const res = await getCity(city)
+    if (res instanceof Error) {
+      setError(res.message)
+      return
+    }
+    setCity(res)
+  }
+
+  const onCityDismissed = () => {
+    setCity(null)
   }
 
   return (
     <MainLayout>
-      <CityFinderInputWrapper>
-        <>
-          <CityFinderInput onInputChange={onInputChange} />
-          <CityFinderResultsList cityList={cityList} />
-          {error && <ErrorComponent message={error} />}
-        </>
-      </CityFinderInputWrapper>
+      <>
+        <CityFinderForm
+          onInputChange={onInputChange}
+          citySearchResultList={citySearchResultList}
+          onCitySelected={onCitySelected}
+        />
+        {error && <ErrorComponent message={error} />}
+        {city && <CityCard city={city} onCityDismissed={onCityDismissed} />}
+      </>
     </MainLayout>
   )
 }

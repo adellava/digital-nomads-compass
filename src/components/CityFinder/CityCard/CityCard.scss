@@ -1,0 +1,47 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.CityCard {
+  @include elevation(12);
+  margin: 1.5rem auto 1.5rem auto;
+  background-color: $white;
+  border-radius: $border-radius;
+  padding: 1rem;
+  width: 600px;
+  &_header {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    grid-template-columns: 1fr 60px;
+    grid-template-areas: 
+      "title icon"
+      "subtitle icon";
+    margin-bottom: 2rem;
+  }
+  &_dismiss {
+    grid-area: icon;
+    cursor: pointer;
+    font-size: 2rem;
+  }
+  &_title {
+    text-align: left;
+    grid-area: title;
+    font-size: 1.6rem;
+  }
+  &_subtitle {
+    text-align: left;
+    grid-area: subtitle;
+    font-size: 0.9rem;
+    color: $gray-600;
+  }
+  &_score {
+    font-size: 0.8rem;
+    color: $gray-600;
+    display: flex;
+    justify-content: space-between;
+    height: 2rem;
+  }
+  &_scoreMeter {
+    flex: 0 0 65%;
+    margin-left: 1rem;
+  }
+}
