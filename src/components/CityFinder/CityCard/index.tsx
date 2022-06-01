@@ -26,13 +26,13 @@ function CityCard({ city, onCityDismissed }: CityCardProps) {
   return (
     <article className="CityCard" data-testid="CityCard">
       <div className="CityCard_header">
-        <div
+        <button
           className="CityCard_dismiss"
           data-testid="CityCard_dismiss"
           onClick={onCityDismissed}
         >
           ✕
-        </div>
+        </button>
         <div className="CityCard_title">{city.name}</div>
         <div className="CityCard_subtitle">{city.continent}</div>
       </div>
