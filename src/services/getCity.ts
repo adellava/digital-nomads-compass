@@ -37,7 +37,7 @@ const getCity = async (aCity: CitySearchResult) => {
     }
     return result
   } catch {
-    return new Error('Error in fetching scores');
+    return new Error('City not found');
   }
 }
 

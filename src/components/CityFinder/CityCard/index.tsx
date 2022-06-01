@@ -34,8 +34,8 @@ function CityCard({ city, onCityDismissed }: CityCardProps) {
       </div>
       {city.scores
         .filter((score) => InterestingScores.includes(score.name))
-        .map((score) => (
-          <div className="CityCard_score">
+        .map((score, i) => (
+          <div className="CityCard_score" key={i}>
             <div>{score.name}</div>
             <div className="CityCard_scoreMeter">
               <MeterBar value={score.score_out_of_10} />

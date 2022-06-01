@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useCallback } from 'react'
 import CityFinderInput from 'components/CityFinder/CityFinderInput'
 import CityFinderInputWrapper from 'components/CityFinder/CityFinderInputWrapper'
 import CityFinderResultsList from 'components/CityFinder/CityFinderResultsList'
@@ -17,10 +17,13 @@ function CityFinderForm({
 }: CityFinderFormProps) {
   const formRef = useRef<HTMLFormElement>(null)
 
-  const handleCitySelected = (city: CitySearchResult) => {
-    if (formRef.current) formRef.current.reset()
-    onCitySelected(city)
-  }
+  const handleCitySelected = useCallback(
+    (city: CitySearchResult) => {
+      if (formRef.current) formRef.current.reset()
+      onCitySelected(city)
+    },
+    [onCitySelected]
+  )
 
   return (
     <form ref={formRef}>
