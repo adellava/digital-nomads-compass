@@ -14,7 +14,7 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
-describe('App', () => {
+describe('App looking for a City', () => {
   test('renders Digital Nomad Compass as a title', () => {
     render(<App />)
     const linkElement = screen.getByText(/Digital Nomad Compass/i)
@@ -63,5 +63,8 @@ describe('App', () => {
     await waitFor(() => {
       expect(screen.getByTestId('Error')).toBeInTheDocument()
     })
+
+    const error = screen.getByTestId('Error')
+    expect(error).toHaveTextContent('Error in fetching cities')
   })
 })

@@ -1,3 +1,7 @@
+import { CityScore } from "./CityScore"
+
 export type City = {
-  matching_full_name: string,
+  continent: string,
+  name: string,
+  scores: CityScore[],
 }

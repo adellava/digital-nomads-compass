@@ -9,6 +9,7 @@ function CityFinderInput({ onInputChange }: CityFinderInputProps) {
   const debouncedOnInputChange = debounce(onInputChange, 500)
   return (
     <input
+      type="search"
       data-testid="CityFinderInput"
       className="CityFinderInput"
       onChange={debouncedOnInputChange}

@@ -1,0 +1,17 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.MeterBar {
+  width: 100%;
+  height: 10px;
+  display: block;
+  border: none;
+  background: none;
+  background-color: $gray-200;
+  border-radius: 5px;
+  &_value {
+    border-radius: 5px;
+    height: 100%;
+    background-color: $success-color;
+  }
+}
