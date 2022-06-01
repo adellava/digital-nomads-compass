@@ -24,9 +24,13 @@ const InterestingScores = [
 
 function CityCard({ city, onCityDismissed }: CityCardProps) {
   return (
-    <article className="CityCard">
+    <article className="CityCard" data-testid="CityCard">
       <div className="CityCard_header">
-        <div className="CityCard_dismiss" onClick={onCityDismissed}>
+        <div
+          className="CityCard_dismiss"
+          data-testid="CityCard_dismiss"
+          onClick={onCityDismissed}
+        >
           ✕
         </div>
         <div className="CityCard_title">{city.name}</div>
@@ -35,7 +39,7 @@ function CityCard({ city, onCityDismissed }: CityCardProps) {
       {city.scores
         .filter((score) => InterestingScores.includes(score.name))
         .map((score, i) => (
-          <div className="CityCard_score" key={i}>
+          <div className="CityCard_score" data-testid="CityCard_score" key={i}>
             <div>{score.name}</div>
             <div className="CityCard_scoreMeter">
               <MeterBar value={score.score_out_of_10} />
