@@ -4,16 +4,18 @@ import CityCard from 'components/CityFinder/CityCard'
 import ErrorComponent from 'components/shared/Error'
 import CityFinderForm from 'components/CityFinder/CityFinderForm'
 import MainLayout from 'layouts/MainLayout'
+import Loader from 'components/shared/Loader'
 import useCity from 'hooks/useCity'
 import useSearchResults from 'hooks/useSerchResults'
 
 function App() {
-  const [getACity, dismissTheCity, city, cityError] = useCity()
+  const [getACity, dismissTheCity, city, cityError, isLoadingACity] = useCity()
   const [
     searchACity,
     emptySearchResults,
     citySearchResultList,
     errorSearchResultList,
+    isSearchingACity,
   ] = useSearchResults()
 
   const onInputChange = useCallback(
@@ -42,6 +44,7 @@ function App() {
         {errorSearchResultList && (
           <ErrorComponent message={errorSearchResultList} />
         )}
+        {(isLoadingACity || isSearchingACity) && <Loader />}
         {city && <CityCard city={city} onCityDismissed={dismissTheCity} />}
         {cityError && <ErrorComponent message={cityError} />}
       </>

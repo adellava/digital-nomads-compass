@@ -6,7 +6,8 @@ type useSerchResultsReturn = [
   (city: string) => void,
   () => void,
   CitySearchResult[],
-  string | null
+  string | null,
+  boolean
 ]
 
 function useSerchResults(): useSerchResultsReturn {
@@ -14,6 +15,7 @@ function useSerchResults(): useSerchResultsReturn {
     CitySearchResult[]
   >([])
   const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const search = async (city: string) => {
     if (!city) {
@@ -21,7 +23,9 @@ function useSerchResults(): useSerchResultsReturn {
       setError(null)
       return
     }
+    setIsLoading(true)
     const res = await searchACity(city)
+    setIsLoading(false)
     if (res instanceof Error) {
       setError(res.message)
       emptySearchResults()
@@ -42,7 +46,7 @@ function useSerchResults(): useSerchResultsReturn {
   }
 
 
-  return [search, emptySearchResults, citySearchResultList, error];
+  return [search, emptySearchResults, citySearchResultList, error, isLoading];
 }
 
 export default useSerchResults
